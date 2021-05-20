@@ -26,14 +26,15 @@ const Tab = createMaterialBottomTabNavigator();
 const MainTabScreen = () => (
   <Tab.Navigator
     initialRouteName="Home"
-    activeColor="#e91e63"
-    barStyle={{ backgroundColor: 'tomato' }}
+    activeColor="#fff"
+  // barStyle={{ backgroundColor: 'tomato' }}
   >
     <Tab.Screen
       name="Home"
       component={HomeStackScreen}
       options={{
         tabBarLabel: 'Home',
+        tabBarColor: '#009387',
         tabBarIcon: ({ color }) => (
           <Icon name="home" color={color} size={26} />
         ),
@@ -44,6 +45,7 @@ const MainTabScreen = () => (
       component={DetailsStackScreen}
       options={{
         tabBarLabel: 'Details',
+        tabBarColor: '#576ead',
         tabBarIcon: ({ color }) => (
           <Icon name="notifications" color={color} size={26} />
         ),
@@ -54,6 +56,7 @@ const MainTabScreen = () => (
       component={ProfileScreen}
       options={{
         tabBarLabel: 'Profile',
+        tabBarColor: '#694fad',
         tabBarIcon: ({ color }) => (
           <Icon name="person" color={color} size={26} />
         ),
@@ -64,6 +67,7 @@ const MainTabScreen = () => (
       component={ExploreScreen}
       options={{
         tabBarLabel: 'Explore',
+        tabBarColor: '#d82850',
         tabBarIcon: ({ color }) => (
           <Icon name="aperture" color={color} size={26} />
         ),
