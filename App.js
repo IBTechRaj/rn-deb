@@ -30,6 +30,7 @@ import SupportScreen from './screens/SupportScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import BookmarkScreen from './screens/BookmarkScreen';
 
+import RootStackScreen from './screens/RootStackScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -64,15 +65,15 @@ const App = () => {
   return (
     <NavigationContainer >
       {/* { loginState.userToken !== null ? ( */}
-      <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
+      {/* <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
         <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
         <Drawer.Screen name="SupportScreen" component={SupportScreen} />
         <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
         <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-      </Drawer.Navigator>
+      </Drawer.Navigator> */}
       {/* ) */}
       {/* : */}
-      {/* <RootStackScreen /> */}
+      <RootStackScreen />
       {/* } */}
     </NavigationContainer>
 
