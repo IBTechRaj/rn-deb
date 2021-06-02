@@ -7,20 +7,11 @@
  */
 
 import React, { useEffect } from 'react';
-
-// import { View, ActivityIndicator } from 'react-native';
-
+import { View, ActivityIndicator } from 'react-native'
 import {
-  NavigationContainer,
-  // DefaultTheme as NavigationDefaultTheme,
-  // DarkTheme as NavigationDarkTheme
+  NavigationContainer
 } from '@react-navigation/native';
 
-// import {
-//   Provider as PaperProvider,
-//   DefaultTheme as PaperDefaultTheme,
-//   DarkTheme as PaperDarkTheme
-// } from 'react-native-paper';
 
 import { DrawerContent } from './screens/DrawerContent';
 
@@ -36,7 +27,56 @@ const Drawer = createDrawerNavigator();
 
 
 const App = () => {
-  // const [isDarkTheme, setIsDarkTheme] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true)
+  const [userToken, setUserToken] = React.useState(null)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+  }, [])
+
+  if (isLoading) {
+    return (
+      <View ><ActivityIndicator size="Large" />
+      </View>
+
+    )
+  }
+  return (
+    <NavigationContainer >
+      {/* { loginState.userToken !== null ? ( */}
+      {/* <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
+        <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+        <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+        <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+        <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
+      </Drawer.Navigator> */}
+      {/* ) */}
+      {/* : */}
+      <RootStackScreen />
+      {/* } */}
+    </NavigationContainer>
+
+  );
+}
+
+
+export default App;
+
+
+
+// import { View, ActivityIndicator } from 'react-native';
+
+  // DefaultTheme as NavigationDefaultTheme,
+  // DarkTheme as NavigationDarkTheme
+
+// import {
+//   Provider as PaperProvider,
+//   DefaultTheme as PaperDefaultTheme,
+//   DarkTheme as PaperDarkTheme
+// } from 'react-native-paper';
+// const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
   // const CustomDefaultTheme = {
   //   ...NavigationDefaultTheme,
@@ -61,25 +101,3 @@ const App = () => {
   // }
 
   // const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
-
-  return (
-    <NavigationContainer >
-      {/* { loginState.userToken !== null ? ( */}
-      {/* <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
-        <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-        <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-        <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-        <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-      </Drawer.Navigator> */}
-      {/* ) */}
-      {/* : */}
-      <RootStackScreen />
-      {/* } */}
-    </NavigationContainer>
-
-  );
-}
-
-
-export default App;
-
