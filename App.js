@@ -22,6 +22,7 @@ import SettingsScreen from './screens/SettingsScreen';
 import BookmarkScreen from './screens/BookmarkScreen';
 
 import RootStackScreen from './screens/RootStackScreen';
+import { AuthContext } from './components/context';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +31,20 @@ const App = () => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [userToken, setUserToken] = React.useState(null)
 
+  const authContext = React.useMemo(() => ({
+    signIn: () => {
+      setUserToken('fgk')
+      setIsLoading(false)
+    },
+    signOut: () => {
+      setUserToken(null)
+      setIsLoading(false)
+    },
+    signUp: () => {
+      setUserToken('fgh')
+      setIsLoading(false)
+    },
+  }))
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false)
@@ -44,19 +59,22 @@ const App = () => {
     )
   }
   return (
-    <NavigationContainer >
-      {/* { loginState.userToken !== null ? ( */}
-      {/* <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
-        <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-        <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-        <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-        <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-      </Drawer.Navigator> */}
-      {/* ) */}
-      {/* : */}
-      <RootStackScreen />
-      {/* } */}
-    </NavigationContainer>
+    <AuthContext.Provider value={authcontext}>
+      <NavigationContainer >
+        {userToken !== null ? (
+          <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
+            <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+            <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+            <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+            <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
+          </Drawer.Navigator>
+        ) : (
+          <RootStackScreen />
+
+        )
+        }
+      </NavigationContainer>
+    </AuthContext.Provider>
 
   );
 }
